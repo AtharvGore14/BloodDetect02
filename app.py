@@ -6,6 +6,7 @@ import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
 import torchvision.transforms as transforms
 import torch.nn as nn
+import logging
 
 app = Flask(__name__, template_folder='templates')
 app.secret_key = 'your_secret_key'
@@ -14,6 +15,9 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
+
+# Set up logging for debugging
+logging.basicConfig(level=logging.DEBUG)
 
 def get_db_connection():
     conn = sqlite3.connect('users.db')
@@ -140,20 +144,34 @@ def predict():
         return redirect(url_for('login'))
 
     if 'file' not in request.files:
-        return jsonify({'error': 'No file part'})
+        flash('No file part', 'error')
+        return redirect(url_for('predictor'))
 
     file = request.files['file']
 
     if file.filename == '':
-        return jsonify({'error': 'No selected file'})
+        flash('No selected file', 'error')
+        return redirect(url_for('predictor'))
+
+    # Allowed extensions
+    allowed_extensions = ['jpg', 'jpeg', 'png']
+    if not file.filename.split('.')[-1].lower() in allowed_extensions:
+        flash('Invalid file type. Please upload a valid image.', 'error')
+        return redirect(url_for('predictor'))
 
     if file:
+        # Save file
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
         file.save(file_path)
 
+        # Log the file path for debugging
+        logging.debug(f"File uploaded to: {file_path}")
+
+        # Process image
         img = Image.open(file_path).convert('RGB')
         img_tensor = data_transform(img).unsqueeze(0)
 
+        # Blood groups list
         blood_groups = ['A+', 'A-', 'AB+', 'AB-', 'B+', 'B-', 'O-', 'O+']
 
         with torch.no_grad():
@@ -161,6 +179,10 @@ def predict():
             _, predicted = torch.max(outputs, 1)
             predicted_group_name = blood_groups[predicted.item()]
 
+        # Log prediction result
+        logging.debug(f"Predicted blood group: {predicted_group_name}")
+
+        # Return result
         return render_template('result.html', blood_group=predicted_group_name)
 
 @app.route('/predict_blood_group')
@@ -177,7 +199,5 @@ def logout():
     return redirect(url_for('login'))
 
 if __name__ == '__main__':
-    import os
     port = int(os.environ.get('PORT', 5000))
     app.run(debug=True, host='0.0.0.0', port=port)
-
