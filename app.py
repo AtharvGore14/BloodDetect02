@@ -147,21 +147,27 @@ def predict():
     if file.filename == '':
         return jsonify({'error': 'No selected file'})
 
-    if file:
-        file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
-        file.save(file_path)
+    try:
+        if file:
+            file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+            file.save(file_path)
 
-        img = Image.open(file_path).convert('RGB')
-        img_tensor = data_transform(img).unsqueeze(0)
+            # Open and process the image
+            img = Image.open(file_path).convert('RGB')
+            img = img.resize((224, 224))  # Ensure the image matches the model's input size
+            img_tensor = data_transform(img).unsqueeze(0)
 
-        blood_groups = ['A+', 'A-', 'AB+', 'AB-', 'B+', 'B-', 'O-', 'O+']
+            # Make the prediction
+            blood_groups = ['A+', 'A-', 'AB+', 'AB-', 'B+', 'B-', 'O-', 'O+']
+            with torch.no_grad():
+                outputs = model(img_tensor)
+                _, predicted = torch.max(outputs, 1)
+                predicted_group_name = blood_groups[predicted.item()]
 
-        with torch.no_grad():
-            outputs = model(img_tensor)
-            _, predicted = torch.max(outputs, 1)
-            predicted_group_name = blood_groups[predicted.item()]
-
-        return render_template('result.html', blood_group=predicted_group_name)
+            # Render the result page with the predicted blood group
+            return render_template('result.html', blood_group=predicted_group_name)
+    except Exception as e:
+        return jsonify({'error': f'Prediction failed: {str(e)}'})
 
 @app.route('/predict_blood_group')
 def predict_blood_group():
