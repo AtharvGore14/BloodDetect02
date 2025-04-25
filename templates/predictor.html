@@ -1,0 +1,904 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Group Prediction</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #c51129;
+            --primary-dark: #a50e22;
+            --secondary: #199abd;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --light-gray: #f0f0f0;
+            --border-light: #e0e0e0;
+            --border-dark: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to right, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.9)), url('https://via.placeholder.com/1200x800') no-repeat center center/cover;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--light);
+            color: var(--primary);
+            padding: 2rem 2.5rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            border: 2px solid var(--border-light);
+            animation: fadeIn 1s ease-out;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--light);
+            padding: 1rem 3rem;
+            height: 60px;
+            margin-top: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        nav a {
+            color: var(--dark);
+            text-decoration: none;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container,
+        .prediction-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 650px;
+            width: 100%;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--light);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: slideIn 0.6s ease-out;
+        }
+    .prediction-container{
+        gap:4rem
+    }
+        .form-container:hover,
+        .prediction-container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+            width: 100%;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--border-light);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 5px rgba(25, 154, 189, 0.3);
+        }
+
+        #imagePreview {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 1rem;
+            display: none;
+            border: 2px solid var(--border-light);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .logout {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+
+        .logout a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary);
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .logout a:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .loading-spinner {
+            display: none;
+            margin-top: 1rem;
+            text-align: center;
+            color: var(--primary);
+        }
+
+        footer {
+            background-color: var(--light);
+            color: var(--dark);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        footer p {
+            font-size: 1rem;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .form-container,
+            .prediction-container {
+                padding: 1.5rem;
+                margin: 1rem;
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                padding: 1rem;
+            }
+
+            header h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>BloodDetect System</h1>
+    </header>
+
+    <div class="logout">
+        <a href="/"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+
+    <div class="prediction-container">
+        <h2 class="text-center">Predict Blood Group <i class="fas fa-tint" style="color: var(--primary);"></i></h2>
+
+        <form action="{{ url_for('predict') }}" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="imageUpload">Choose Image:</label>
+                <input type="file" id="imageUpload" name="file" class="form-control" accept="image/*" onchange="displayImage(this)" required>
+            </div>
+
+            <div class="loading-spinner" id="spinner">
+                <i class="fas fa-spinner fa-spin" style="font-size: 2rem;"></i>
+            </div>
+
+            <img id="imagePreview" src="" alt="Image Preview">
+
+            <button type="submit" class="btn">
+                <i class="fas fa-flask"></i> Predict Blood Group
+            </button>
+        </form>
+    </div>
+
+    <script>
+        function displayImage(input) {
+            const imagePreview = document.getElementById('imagePreview');
+            const spinner = document.getElementById('spinner');
+
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                spinner.style.display = 'block';  // Show spinner
+
+                reader.onload = function (e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                    imagePreview.style.transform = 'scale(1.05)';
+                    spinner.style.display = 'none'; // Hide spinner after loading
+                }
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                imagePreview.style.display = 'none';
+                spinner.style.display = 'none';  // Hide spinner if no image
+            }
+        }
+    </script>
+
+</body>
+
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BloodDetect System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #e41e3f;
+            --primary-light: #ff3b5c;
+            --primary-dark: #b5172f;
+            --accent: #3a7bd5;
+            --accent-light: #00d2ff;
+            --dark: #1a1a2e;
+            --light: #ffffff;
+            --gray: #f0f0f0;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #141e30, #243b55);
+            color: var(--light);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/api/placeholder/1200/800') no-repeat center center/cover;
+            opacity: 0.07;
+            z-index: -1;
+        }
+
+        .blood-cells {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .blood-cell {
+            position: absolute;
+            background: radial-gradient(circle at 35% 35%, rgba(228, 30, 63, 0.8), rgba(228, 30, 63, 0.3));
+            border-radius: 50%;
+            filter: blur(2px);
+            opacity: 0;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.2;
+            }
+            100% {
+                transform: translate(var(--translateX), -100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .logo {
+            background: linear-gradient(45deg, var(--primary), var(--primary-light));
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(228, 30, 63, 0.4);
+            animation: pulse 3s infinite;
+            margin-right: 1rem;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(228, 30, 63, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(228, 30, 63, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(228, 30, 63, 0);
+            }
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+            background: linear-gradient(45deg, #ff3b5c, #e41e3f);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 2px 2px 10px rgba(228, 30, 63, 0.3);
+            letter-spacing: 2px;
+            transform: perspective(500px) rotateX(5deg);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .logout {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            z-index: 5;
+        }
+
+        .logout a {
+            display: flex;
+            align-items: center;
+            color: var(--light);
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .logout a:hover {
+            background: rgba(228, 30, 63, 0.8);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(228, 30, 63, 0.3);
+        }
+
+        .logout a i {
+            margin-right: 8px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            z-index: 2;
+            position: relative;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            margin: 2rem 0;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            transform: rotate(0deg);
+            z-index: -1;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .card:hover::before {
+            transform: rotate(45deg);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .card-header i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-right: 1rem;
+            background: rgba(228, 30, 63, 0.1);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+        }
+
+        .card-header h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--light);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        .upload-container {
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .upload-container:hover {
+            border-color: var(--primary);
+            background: rgba(228, 30, 63, 0.05);
+        }
+
+        .upload-container i {
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .upload-container:hover i {
+            color: var(--primary);
+            transform: scale(1.1);
+        }
+
+        .upload-container p {
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        .upload-container input[type="file"] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .upload-preview {
+            position: relative;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: none;
+        }
+
+        .upload-preview img {
+            width: 100%;
+            display: block;
+            transform: scale(1);
+            transition: transform 0.5s ease;
+        }
+
+        .upload-preview:hover img {
+            transform: scale(1.05);
+        }
+
+        .btn {
+            background: linear-gradient(45deg, var(--primary-dark), var(--primary));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(228, 30, 63, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(228, 30, 63, 0.4);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-left-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .card {
+                padding: 2rem;
+            }
+            
+            .logout {
+                top: 1rem;
+                right: 1rem;
+            }
+            
+            .upload-container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="blood-cells" id="bloodCells"></div>
+
+    <header>
+        <div class="logo-container">
+            <div class="logo">
+                <i class="fas fa-tint" style="color: white; font-size: 1.5rem;"></i>
+            </div>
+            <h1>BloodDetect System</h1>
+        </div>
+    </header>
+
+    <div class="logout">
+        <a href="/">
+            <i class="fas fa-sign-out-alt"></i>
+            Logout
+        </a>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-microscope"></i>
+                <h2>Blood Group Prediction</h2>
+            </div>
+
+            <form action="{{ url_for('predict') }}" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <div class="upload-container" id="dropArea">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag and drop your blood sample image or click to browse</p>
+                        <span style="color: rgba(255,255,255,0.5); font-size: 0.9rem;">Supported formats: JPG, PNG, GIF</span>
+                        <input type="file" id="imageUpload" name="file" accept="image/*" onchange="handleFileSelect(this)">
+                    </div>
+
+                    <div class="upload-preview" id="previewContainer">
+                        <img id="imagePreview" src="" alt="Image Preview">
+                    </div>
+                </div>
+
+                <div class="loading-spinner" id="spinner">
+                    <div class="spinner"></div>
+                    <p style="margin-top: 1rem; color: rgba(255,255,255,0.7);">Processing your sample...</p>
+                </div>
+
+                <button type="submit" class="btn" id="submitBtn">
+                    <i class="fas fa-flask"></i>
+                    Analyze Blood Group
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Create floating blood cells
+        function createBloodCells() {
+            const bloodCellsContainer = document.getElementById('bloodCells');
+            const numberOfCells = 15;
+            
+            for (let i = 0; i < numberOfCells; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'blood-cell';
+                
+                // Random size between 30 and 100px
+                const size = Math.floor(Math.random() * 70) + 30;
+                cell.style.width = `${size}px`;
+                cell.style.height = `${size}px`;
+                
+                // Random horizontal position
+                const posX = Math.floor(Math.random() * 100);
+                cell.style.left = `${posX}%`;
+                
+                // Random animation duration
+                const duration = Math.floor(Math.random() * 10) + 15;
+                cell.style.animationDuration = `${duration}s`;
+                
+                // Random animation delay
+                const delay = Math.floor(Math.random() * 15);
+                cell.style.animationDelay = `${delay}s`;
+                
+                // Random horizontal movement
+                const translateX = Math.floor(Math.random() * 200) - 100;
+                cell.style.setProperty('--translateX', `${translateX}px`);
+                
+                bloodCellsContainer.appendChild(cell);
+            }
+        }
+
+        // Handle file selection
+        function handleFileSelect(input) {
+            const imagePreview = document.getElementById('imagePreview');
+            const previewContainer = document.getElementById('previewContainer');
+            const spinner = document.getElementById('spinner');
+            
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                spinner.style.display = 'block';
+                
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                    previewContainer.style.display = 'block';
+                    
+                    setTimeout(() => {
+                        spinner.style.display = 'none';
+                    }, 1000);
+                }
+                
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                previewContainer.style.display = 'none';
+                spinner.style.display = 'none';
+            }
+        }
+
+        // Drag and drop functionality
+        function setupDragAndDrop() {
+            const dropArea = document.getElementById('dropArea');
+            const fileInput = document.getElementById('imageUpload');
+            
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropArea.addEventListener(eventName, preventDefaults, false);
+            });
+            
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropArea.addEventListener(eventName, highlight, false);
+            });
+            
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropArea.addEventListener(eventName, unhighlight, false);
+            });
+            
+            function highlight() {
+                dropArea.style.borderColor = 'var(--primary)';
+                dropArea.style.background = 'rgba(228, 30, 63, 0.1)';
+            }
+            
+            function unhighlight() {
+                dropArea.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                dropArea.style.background = 'transparent';
+            }
+            
+            dropArea.addEventListener('drop', handleDrop, false);
+            
+            function handleDrop(e) {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                
+                fileInput.files = files;
+                handleFileSelect(fileInput);
+            }
+        }
+
+        // Add loading animation when submitting
+        document.addEventListener('DOMContentLoaded', function() {
+            createBloodCells();
+            setupDragAndDrop();
+            
+            const form = document.querySelector('form');
+            const submitBtn = document.getElementById('submitBtn');
+            const spinner = document.getElementById('spinner');
+            
+            form.addEventListener('submit', function(e) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+                spinner.style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>

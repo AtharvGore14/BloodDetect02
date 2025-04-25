@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About - BloodDetect</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    .image-section {
+      background: url("{{ url_for('static', filename='y.jpg') }}") no-repeat center center/cover;
+      min-height: 75vh;
+      position: relative;
+    }
+
+    .image-section::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .image-text {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      text-align: center;
+      z-index: 2;
+    }
+
+    .image-text h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .content-section {
+      padding: 3rem 2rem;
+      margin: 2rem auto;
+      max-width: 900px;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(12px);
+      border-radius: 1rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .content-section h2 {
+      color: #561616;
+      margin-bottom: 1rem;
+    }
+
+    .highlight-box {
+      position: relative;
+      overflow: hidden;
+      padding: 2rem;
+      color: #cad2dc;
+      border-radius: 1rem;
+      margin: 2rem 0;
+      z-index: 1;
+    }
+    
+    .highlight-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: url("{{ url_for('static', filename='9.jpg') }}") no-repeat center center/cover;
+      filter: blur(2px);
+      z-index: -1;
+    }
+    
+
+    footer {
+      margin-top: 4rem;
+    }
+  </style>
+</head>
+
+<body class="light-theme">
+
+  <header class="navbar">
+    <h1>BloodDetect</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/about" class="active">About</a>
+      <a href="/team">Team</a>
+      <a href="/predictor">Predictor</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="image-section">
+    <div class="image-text">
+      <h1>About BloodDetect</h1>
+      <p>Futuristic fingerprint-based blood group prediction</p>
+    </div>
+  </section>
+
+  <!-- About Content -->
+  <section class="content-section">
+    <h2>About Our Technology</h2>
+    <p>Fingerprints are unique to each individual, formed by ridges and valleys on the skin's surface. Even
+      identical twins have distinct fingerprints. This uniqueness arises from both genetic and environmental
+      factors during fetal development, making fingerprints a reliable biometric identifier.</p>
+
+    <p>The patterns—loops, whorls, and arches—are widely used in forensic science and identity verification due to their stability and individuality.</p>
+  </section>
+
+  <!-- Highlighted Insight -->
+  <section class="content-section">
+    <div class="highlight-box">
+      <h2 style="color: white;">How It Works</h2>
+      <p>Blood group antigens, like A, B, AB, and O, are determined by specific inherited alleles. These genes may be linked to physical traits that influence fingerprint patterns, allowing machine learning models to make blood group predictions based on them.</p>
+    </div>
+
+    <h2>Practical Applications</h2>
+    <p>In forensics, predicting blood groups from fingerprints can provide crucial leads. In medical emergencies where a patient's blood type is unknown, this approach enables instant identification without invasive tests.</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <h3>Contact Us</h3>
+    <p>📍 123 Main Street, Hometown</p>
+    <p>📞 (123) 456-7890</p>
+    <p>✉️ info@blooddetect.com</p>
+    <p class="mt-2">&copy; 2025 BloodDetect System. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

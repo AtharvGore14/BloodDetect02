@@ -1,0 +1,547 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Group Prediction Result</title>
+    <style>
+        :root {
+            --primary: #c51129;
+            --primary-dark: #a50e22;
+            --secondary: #199abd;
+            --light: #f8f9fa;
+            --dark: #212529;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0 0 0 ;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--dark);
+            padding: 0 2rem;
+            height: 60px;
+            margin-top: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: var(--light);
+            color: var(--dark);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .result-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+
+        .blood-group {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .logout {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+
+        .logout a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            background-color: var(--primary);
+            border-radius: 4px;
+        }
+
+        .logout a:hover {
+            background-color: var(--primary-dark);
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                height: auto;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>BloodDetect System</h1>
+    </header>
+    <div class="logout">
+        <a href="/"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+    
+    <div class="result-container">
+        <h1 class="text-center">Blood Group Predicted is</h1>
+        <div class="blood-group">{{ blood_group }}</div>
+        <div class="text-center mt-3">
+            <a href="{{ url_for('predict_blood_group') }}" class="btn btn-secondary">
+                <i class="fas fa-redo"></i> Predict Another
+            </a>
+        </div>
+    </div>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Group Prediction Result</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #e63946;
+            --primary-light: #ff6b78;
+            --primary-dark: #b52b37;
+            --secondary: #457b9d;
+            --accent: #1d3557;
+            --light: #f1faee;
+            --dark: #1d3557;
+            --shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            color: var(--dark);
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(45deg, var(--primary-dark), var(--primary));
+            color: white;
+            padding: 1.5rem 0;
+            position: relative;
+            z-index: 1;
+            box-shadow: var(--shadow);
+        }
+
+        header h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .blood-icon {
+            display: inline-block;
+            margin-right: 10px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .logout {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            z-index: 10;
+        }
+
+        .logout a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.6rem 1.5rem;
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 50px;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logout a:hover {
+            background-color: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .result-container {
+            max-width: 500px;
+            margin: 3rem auto;
+            padding: 0;
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transform: perspective(1000px) rotateX(5deg);
+            transition: transform 0.3s ease;
+        }
+
+        .result-container:hover {
+            transform: perspective(1000px) rotateX(0);
+        }
+
+        .result-header {
+            background: linear-gradient(45deg, var(--dark), var(--accent));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .result-header h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .result-header::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: var(--dark);
+            clip-path: polygon(0 0, 50% 100%, 100% 0);
+        }
+
+        .result-body {
+            background: white;
+            padding: 3rem 2rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .blood-group-container {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .blood-drop {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 40%, var(--primary-light), var(--primary-dark));
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            box-shadow: inset 0 -10px 20px rgba(0,0,0,0.2),
+                        0 10px 20px rgba(0,0,0,0.15);
+            overflow: hidden;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-10px) scale(1.03); }
+        }
+
+        .blood-drop::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 20%;
+            width: 25%;
+            height: 25%;
+            background: rgba(255,255,255,0.4);
+            border-radius: 50%;
+            filter: blur(5px);
+        }
+
+        .blood-group {
+            position: relative;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            z-index: 1;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(45deg, var(--secondary), var(--accent));
+            color: white;
+            box-shadow: 0 4px 15px rgba(69, 123, 157, 0.4);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(69, 123, 157, 0.5);
+        }
+
+        .blood-facts {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(241, 250, 238, 0.8);
+            border-radius: 15px;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .blood-facts h3 {
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .blood-facts p {
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            display: block;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100px) scale(0); opacity: 0; }
+            10% { opacity: 0.5; }
+            95% { opacity: 0.5; }
+            100% { transform: translateY(calc(100vh + 100px)) scale(1); opacity: 0; }
+        }
+
+        @media (max-width: 600px) {
+            .result-container {
+                width: 90%;
+                margin: 2rem auto;
+            }
+            
+            .blood-group {
+                font-size: 3rem;
+            }
+            
+            .blood-group-container {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .logout {
+                top: 1rem;
+                right: 1rem;
+            }
+            
+            .logout a {
+                padding: 0.4rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+
+    <header>
+        <h1><span class="blood-icon"><i class="fas fa-tint"></i></span>BloodDetect System</h1>
+    </header>
+    
+    <div class="logout">
+        <a href="/"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+    
+    <div class="result-container">
+        <div class="result-header">
+            <h1>Your Blood Group Result</h1>
+        </div>
+        <div class="result-body">
+            <div class="blood-group-container">
+                <div class="blood-drop"></div>
+                <div class="blood-group">{{ blood_group }}</div>
+            </div>
+            
+            <a href="{{ url_for('predict_blood_group') }}" class="btn btn-secondary">
+                <i class="fas fa-sync-alt"></i> Predict Another
+            </a>
+            
+            <div class="blood-facts">
+                <h3><i class="fas fa-info-circle"></i> Blood Type Facts</h3>
+                <p id="blood-fact">Loading blood type information...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create animated blood particle background
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 20;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('span');
+                particle.className = 'particle';
+                
+                // Random size between 5 and 20px
+                const size = Math.random() * 15 + 5;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                
+                // Random animation duration between 8 and 15 seconds
+                const duration = Math.random() * 7 + 8;
+                particle.style.animationDuration = `${duration}s`;
+                
+                // Random delay
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Display blood type facts based on blood group
+        function showBloodFacts() {
+            const bloodGroup = document.querySelector('.blood-group').textContent.trim();
+            const factElement = document.getElementById('blood-fact');
+            
+            const facts = {
+                'A+': 'Around 35.7% of the population has A+ blood. You can donate to A+ and AB+ blood types.',
+                'A-': 'Only about 6.3% of the population has A- blood. You can donate to A+, A-, AB+, and AB- blood types.',
+                'B+': 'Around 8.5% of the population has B+ blood. You can donate to B+ and AB+ blood types.',
+                'B-': 'Only about 1.5% of the population has B- blood. You can donate to B+, B-, AB+, and AB- blood types.',
+                'AB+': 'Only about 3.4% of the population has AB+ blood. You are a universal recipient but can only donate to AB+.',
+                'AB-': 'AB- is the rarest blood type, found in just 0.6% of the population. You can donate to AB+ and AB- blood types.',
+                'O+': 'O+ is the most common blood type, with about 37.4% of the population. You can donate to A+, B+, AB+, and O+ blood types.',
+                'O-': 'Around 6.6% of the population has O- blood. You are a universal donor and can donate to all blood types!'
+            };
+            
+            if (facts[bloodGroup]) {
+                factElement.textContent = facts[bloodGroup];
+            } else {
+                factElement.textContent = 'Each blood type has unique characteristics and compatibility profiles.';
+            }
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            showBloodFacts();
+            
+            // Add pulse effect to result container on load
+            setTimeout(() => {
+                document.querySelector('.result-container').classList.add('pulse');
+            }, 500);
+        });
+    </script>
+</body>
+</html>
