@@ -63,16 +63,12 @@ Achieved 92.4% accuracy on test data.
 
 👥 Team Members
 Atharv Gore (Developer)
-
 Mayank Goplani (Developer)
-
 Dnyanraj Gore (Developer)
-
 Shraddha Golhar (Developer)
-
 Anushka Gore (Developer)
-
 Gaurav Gore (Developer)
+
 
 📄 License
 This project is licensed under the MIT License - see the LICENSE file for details.
@@ -82,11 +78,8 @@ Our faculty guides at Vishwakarma Institute of Technology
 Open-source contributors to TensorFlow and Flask
 Research papers on fingerprint-blood group correlations
 
-🌟 Future Scope
+🌟 Future Scope:
 -Mobile application development
-
 -Integration with hospital management systems
-
 -Real-time prediction API
-
 -Expanded blood parameter predictions
