@@ -1,7 +1,5 @@
 # BloodDetect 🩸
 
-![Project Logo](static/logo.png)
-
 A revolutionary AI-powered system that predicts blood groups from fingerprint images using deep learning.
 
 ## ✨ Features
