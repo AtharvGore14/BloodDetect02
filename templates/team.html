@@ -142,19 +142,32 @@
       text-shadow: 0 2px 10px rgba(0,0,0,0.3);
       position: relative;
       display: inline-block;
-      padding-bottom: 10px; /* Space for underline */
+      padding-bottom: 10px;
     }
     
     .hero-content h1::after {
       content: '';
       position: absolute;
       bottom: 0;
-      left: 0; /* Changed from left: 50% */
-      width: 100%; /* Changed from width: 80px */
+      left: 50%;
+      width: 0;
       height: 4px;
       background: var(--accent);
       border-radius: 2px;
-      transform: none; /* Remove the translateX transform */
+      transform: translateX(-50%);
+      animation: underlineExpand 0.8s ease-out forwards;
+      animation-delay: 0.3s; /* Delay to let text appear first */
+    }
+    
+    @keyframes underlineExpand {
+      0% {
+        width: 0;
+        opacity: 0;
+      }
+      100% {
+        width: 100%;
+        opacity: 1;
+      }
     }
 
     .hero-content p {
@@ -344,7 +357,7 @@
 
     .contact-info {
       display: flex;
-      align-items: center;
+      align-items: baseline;
       margin-bottom: 1rem;
     }
 
@@ -603,7 +616,7 @@
     </div>
 
     <div class="copyright">
-      <p>&copy; 2025 BloodDetect</p>
+      <p>&copy; 2025 BloodDetect System</p>
     </div>
   </footer>
 

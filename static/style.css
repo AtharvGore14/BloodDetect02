@@ -92,7 +92,7 @@ body {
     background-color: #203d2452;
     display: flex;
     justify-content: center;
-    gap: 7rem;
+    gap: 1.5rem;
     flex-wrap: wrap;
     padding: 4rem 2rem;
   }
