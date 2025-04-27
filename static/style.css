@@ -37,23 +37,14 @@ body {
   transition: color 0.3s ease;
 }
 .navbar nav a.active {
-  color: #e84242d9;
+  color: #e7dbdbd9;
   font-weight: 600;
 }
 
-.navbar nav a::after {
-  content: '';
-  position: absolute;
-  width: 0%;
-  height: 2px;
-  left: 0;
-  bottom: -4px;
-  background-color: #b11212;
-  transition: width 0.3s ease;
-}
+
 
 .navbar nav a:hover {
-  color: #e84242d9;
+  color: #fbf5f5d9;
   font-weight: 600;
 }
 
@@ -98,15 +89,16 @@ body {
   }
   
   .features {
+    background-color: #203d2452;
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 7rem;
     flex-wrap: wrap;
     padding: 4rem 2rem;
   }
   
   .feature-card {
-    background: #fff;
+    background: #ffffff63;
     border-radius: 1.25rem;
     padding: 1.5rem;
     width: 300px;
@@ -128,8 +120,8 @@ body {
   
   footer {
     text-align: center;
-    padding: 2rem;
-    background-color: #f1f5f9;
+    padding: 1.5rem;
+    background-color: #4e03033c;
     color: #555;
   }
   

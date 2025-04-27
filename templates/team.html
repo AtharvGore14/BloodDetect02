@@ -5,102 +5,431 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Our Team - BloodDetect</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    
-    .image-section {
-      background: url("{{ url_for('static', filename='4.jpg') }}") no-repeat center center/cover;
-      min-height: 75vh;
-      position: relative;
+    :root {
+      --primary: #8b0000;
+      --primary-light: #b71c1c;
+      --secondary: #f8f8f8;
+      --text-dark: #333;
+      --text-light: #f8f8f8;
+      --accent: #ff5252;
     }
 
-    .image-section::after {
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #f9f9f9;
+      color: var(--text-dark);
+    }
+
+    .navbar {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .navbar h1 {
+      color: white;
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar h1::before {
+      content: '🩸';
+      margin-right: 10px;
+      font-size: 1.5rem;
+    }
+
+    .navbar nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .navbar nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      transition: all 0.3s;
+    }
+
+    .navbar nav a:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+    }
+
+    .navbar nav a.active {
+      background: rgba(255,255,255,0.3);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .hero-section {
+      position: relative;
+      height: 60vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("{{ url_for('static', filename='4.jpg') }}") no-repeat center center;
+      background-size: cover;
+      z-index: -1;
+      filter: brightness(0.7);
+    }
+
+    .hero-particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.5;
+      background: radial-gradient(circle, transparent 10%, #000 90%);
+    }
+
+    .hero-content {
+      text-align: center;
+      color: white;
+      z-index: 1;
+      max-width: 800px;
+      padding: 2rem;
+      border-radius: 10px;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+      transform: translateY(0);
+      animation: float 3s ease-in-out infinite;
+    }
+    
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+
+    .hero-content h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      position: relative;
+      display: inline-block;
+      padding-bottom: 10px; /* Space for underline */
+    }
+    
+    .hero-content h1::after {
       content: '';
       position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      min-height: 50vh;
-      position: relative;
+      bottom: 0;
+      left: 0; /* Changed from left: 50% */
+      width: 100%; /* Changed from width: 80px */
+      height: 4px;
+      background: var(--accent);
+      border-radius: 2px;
+      transform: none; /* Remove the translateX transform */
     }
 
-    .image-text {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      color: white;
-      text-align: center;
-      z-index: 2;
-    }
-
-    .image-text h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
+    .hero-content p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      max-width: 600px;
+      margin: 0 auto;
     }
 
     .team-section {
-      padding: 4rem 2rem;
-      background-color: #f9f9f91f;
+      padding: 5rem 5%;
+      background: var(--secondary);
+      position: relative;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .section-heading h2 {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-heading h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .section-heading p {
+      color: var(--text-dark);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
     }
 
     .team-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2.5rem;
       margin-top: 2rem;
     }
 
     .team-member {
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(8px);
-      border-radius: 1rem;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      text-align: center;
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
     }
 
     .team-member:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transform: translateY(-15px) scale(1.02);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
     }
 
-    .team-member img {
+    .team-member::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
-      height: 250px;
-      object-fit: cover;
-      border-radius: 1rem 1rem 0 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--primary-light), var(--accent));
+    }
+
+    .member-photo {
+      height: 180px;
+      background: linear-gradient(45deg, #f4464d, #fad0c4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .member-photo i {
+      font-size: 5rem;
+      color: rgba(255,255,255,0.8);
     }
 
     .team-info {
       padding: 2rem;
+      text-align: center;
+      position: relative;
     }
 
     .team-info h3 {
-      color: #561616;
+      color: var(--primary);
       font-size: 1.5rem;
       margin-bottom: 0.5rem;
+      font-weight: 600;
     }
 
     .team-info p {
-      color: #333;
-      margin-bottom: 0.3rem;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
     }
 
-    footer {
-      padding: 4rem;
-      padding: 2rem 0;
-      text-align: center;
-      background-color: #333;
-      color: white;
-    }
-
-    footer h3 {
+    .member-role {
+      font-weight: 500;
+      color: var(--accent);
       margin-bottom: 1rem;
     }
 
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #f5f5f5;
+      color: var(--primary);
+      font-size: 1.2rem;
+      transition: all 0.3s;
+    }
+
+    .social-links a:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    .footer {
+      padding: 4rem 5%;
+      background: linear-gradient(135deg, #333, #222);
+      color: white;
+      position: relative;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+    }
+
+    .footer-col h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.8rem;
+    }
+
+    .footer-col h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--accent);
+    }
+
+    .footer-col p, .footer-col a {
+      color: #ddd;
+      margin-bottom: 1rem;
+      display: block;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .footer-col a:hover {
+      color: var(--accent);
+      transform: translateX(5px);
+    }
+
+    .contact-info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .contact-info i {
+      margin-right: 10px;
+      color: var(--accent);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 2rem;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    .blood-particle {
+      position: absolute;
+      background: rgba(255,0,0,0.3);
+      border-radius: 50%;
+      animation: float-particle 15s infinite linear;
+    }
+
+    @keyframes float-particle {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-800px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background: var(--primary);
+      color: white;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    .btn:hover {
+      background: var(--primary-light);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        padding: 1rem;
+      }
+      
+      .navbar h1 {
+        margin-bottom: 1rem;
+      }
+      
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+      
+      .team-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
+      }
+    }
   </style>
 </head>
 
-<body class="light-theme">
-
+<body>
+  <!-- Navbar -->
   <header class="navbar">
     <h1>BloodDetect</h1>
     <nav>
@@ -112,60 +441,127 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="image-section">
-    <div class="image-text">
+  <section class="hero-section">
+    <div class="hero-bg"></div>
+    <div class="hero-particles" id="particles-js"></div>
+    <div class="hero-content">
       <h1>Meet Our Team</h1>
-      <p>The brilliant minds behind BloodDetect</p>
+      <p>The brilliant minds behind BloodDetect revolutionizing blood disorder detection through technology and innovation</p>
     </div>
   </section>
 
   <!-- Team Section -->
   <section class="team-section">
-    <div class="container">
-      <h2 class="text-center" style="color: #443032;">Our Development Team</h2>
-      <div class="team-grid">
-        <!-- Team Member 1 -->
-        <div class="team-member">
-          <div class="team-info">
-            <h3>Atharv Gore</h3>
-            <p>ID: 12411277</p>
-            <p>CS-D</p>
+    <div class="section-heading">
+      <h2>Our Development Team</h2>
+      <p>Talented individuals working together to make blood disorder detection more accessible and accurate</p>
+    </div>
+    
+    <div class="team-grid">
+      <!-- Team Member 1 -->
+      <div class="team-member">
+        <div class="member-photo">
+          <i class="fas fa-user-circle"></i>
+        </div>
+        <div class="team-info">
+          <h3>Atharv Gore</h3>
+          <p class="member-role">Developer</p>
+          <p>ID: 12411277</p>
+          <p>CS-D</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fas fa-envelope"></i></a>
           </div>
         </div>
+      </div>
 
-        <!-- Team Member 2 -->
-        <div class="team-member">
-          <div class="team-info">
-            <h3>N Kusuma</h3>
-            <p>ID: 21R11A05D8</p>
-            <p>GCTC</p>
+      <!-- Team Member 2 -->
+      <div class="team-member">
+        <div class="member-photo">
+          <i class="fas fa-user-circle"></i>
+        </div>
+        <div class="team-info">
+          <h3>Mayank Goplani</h3>
+          <p class="member-role">Developer</p>
+          <p>ID: 12413197</p>
+          <p>CS-D</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fas fa-envelope"></i></a>
           </div>
         </div>
+      </div>
 
-        <!-- Team Member 3 -->
-        <div class="team-member">
-          <div class="team-info">
-            <h3>John Doe</h3>
-            <p>ID: 21A22B33C4</p>
-            <p>AI Expert</p>
+      <!-- Team Member 3 -->
+      <div class="team-member">
+        <div class="member-photo">
+          <i class="fas fa-user-circle"></i>
+        </div>
+        <div class="team-info">
+          <h3>Dnyanraj Gore</h3>
+          <p class="member-role">Developer</p>
+          <p>ID: </p>
+          <p>CS-D</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fas fa-envelope"></i></a>
           </div>
         </div>
+      </div>
 
-        <!-- Team Member 4 -->
-        <div class="team-member">
-          <div class="team-info">
-            <h3>Jane Doe</h3>
-            <p>ID: 21B11C99A2</p>
-            <p>Lead Developer</p>
+      <!-- Team Member 4 -->
+      <div class="team-member">
+        <div class="member-photo">
+          <i class="fas fa-user-circle"></i>
+        </div>
+        <div class="team-info">
+          <h3>Shraddha Golhar</h3>
+          <p class="member-role">Developer</p>
+          <p>ID: </p>
+          <p>CS-D</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fas fa-envelope"></i></a>
           </div>
         </div>
-        
-        <!-- Additional Team Members (If needed) -->
-        <div class="team-member">
-          <div class="team-info">
-            <h3>Member Name</h3>
-            <p>ID: 12345678</p>
-            <p>Role</p>
+      </div>
+      
+      <!-- Team Member 5 -->
+      <div class="team-member">
+        <div class="member-photo">
+          <i class="fas fa-user-circle"></i>
+        </div>
+        <div class="team-info">
+          <h3>Anushka Gore</h3>
+          <p class="member-role">Developer</p>
+          <p>ID: </p>
+          <p>CS-D</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Team Member 6 -->
+      <div class="team-member">
+        <div class="member-photo">
+          <i class="fas fa-user-circle"></i>
+        </div>
+        <div class="team-info">
+          <h3>Gaurav Gore</h3>
+          <p class="member-role">Developer</p>
+          <p>ID: </p>
+          <p>CS-D</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fas fa-envelope"></i></a>
           </div>
         </div>
       </div>
@@ -173,13 +569,134 @@
   </section>
 
   <!-- Footer -->
-  <footer>
-    <h3>Contact Us</h3>
-    <p>📍 123 Main Street, Hometown</p>
-    <p>📞 (123) 456-7890</p>
-    <p>✉️ info@blooddetect.com</p>
-    <p>&copy; 2025 BloodDetect System. All rights reserved.</p>
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h3>About BloodDetect</h3>
+        <p>BloodDetect is an innovative platform that uses AI to detect blood groups from fingerprints, revolutionizing
+          emergency medicine and forensic science.</p>
+      </div>
+
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/team">Team</a>
+        <a href="/predictor">Predictor</a>
+      </div>
+
+      <div class="footer-col">
+        <h3>Contact Us</h3>
+        <div class="contact-info">
+          <i class="fas fa-map-marker-alt"></i>
+          <p>Vishwakarma Institute of Technology</p>
+        </div>
+        <div class="contact-info">
+          <i class="fas fa-phone"></i>
+          <p>(123) 456-7890</p>
+        </div>
+        <div class="contact-info">
+          <i class="fas fa-envelope"></i>
+          <p>vit.edu</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="copyright">
+      <p>&copy; 2025 BloodDetect</p>
+    </div>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    // Create floating blood cell particles
+    function createBloodParticles() {
+      const teamSection = document.querySelector('.team-section');
+      for (let i = 0; i < 15; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('blood-particle');
+        
+        // Random size between 10px and 30px
+        const size = Math.random() * 20 + 10;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        
+        // Random position
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.bottom = `-${size}px`;
+        
+        // Random animation duration
+        particle.style.animationDuration = `${Math.random() * 10 + 10}s`;
+        
+        // Random delay
+        particle.style.animationDelay = `${Math.random() * 5}s`;
+        
+        teamSection.appendChild(particle);
+      }
+    }
+    // Initialize particles.js for hero section
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof particlesJS !== 'undefined') {
+        particlesJS('particles-js', {
+          "particles": {
+            "number": {
+              "value": 80,
+              "density": {
+                "enable": true,
+                "value_area": 800
+              }
+            },
+            "color": {
+              "value": "#ffffff"
+            },
+            "shape": {
+              "type": "circle"
+            },
+            "opacity": {
+              "value": 0.5,
+              "random": true
+            },
+            "size": {
+              "value": 3,
+              "random": true
+            },
+            "line_linked": {
+              "enable": true,
+              "distance": 150,
+              "color": "#ffffff",
+              "opacity": 0.4,
+              "width": 1
+            },
+            "move": {
+              "enable": true,
+              "speed": 3,
+              "direction": "none",
+              "random": true,
+              "straight": false,
+              "out_mode": "out",
+              "bounce": false
+            }
+          },
+          "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+              "onhover": {
+                "enable": true,
+                "mode": "grab"
+              },
+              "onclick": {
+                "enable": true,
+                "mode": "push"
+              },
+              "resize": true
+            }
+          },
+          "retina_detect": true
+        });
+      }
+      
+      createBloodParticles();
+    });
+  </script>
 </body>
 </html>
