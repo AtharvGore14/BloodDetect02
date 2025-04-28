@@ -6,6 +6,7 @@ import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
 import torchvision.transforms as transforms
 import torch.nn as nn
+import threading  # To handle image prediction in separate threads
 
 app = Flask(__name__, template_folder='templates')
 app.secret_key = 'your_secret_key'
@@ -14,6 +15,9 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
+
+# Global variable to store prediction result
+prediction_result = None
 
 def get_db_connection():
     conn = sqlite3.connect('users.db')
@@ -70,6 +74,22 @@ data_transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])  # Must match training normalization
 ])
+
+# Predict function (synchronous, running in a separate thread)
+def predict_image(file_path):
+    global prediction_result  # Access the global variable
+    try:
+        img = Image.open(file_path).convert('RGB')
+        img = img.resize((224, 224))  # Ensure the image matches the model's input size
+        img_tensor = data_transform(img).unsqueeze(0)
+
+        blood_groups = ['A+', 'A-', 'AB+', 'AB-', 'B+', 'B-', 'O-', 'O+']
+        with torch.no_grad():
+            outputs = model(img_tensor)
+            _, predicted = torch.max(outputs, 1)
+            prediction_result = blood_groups[predicted.item()]  # Store the result globally
+    except Exception as e:
+        prediction_result = f"Prediction failed: {str(e)}"
 
 @app.route('/')
 def home():
@@ -152,20 +172,13 @@ def predict():
             file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
             file.save(file_path)
 
-            # Open and process the image
-            img = Image.open(file_path).convert('RGB')
-            img = img.resize((224, 224))  # Ensure the image matches the model's input size
-            img_tensor = data_transform(img).unsqueeze(0)
-
-            # Make the prediction
-            blood_groups = ['A+', 'A-', 'AB+', 'AB-', 'B+', 'B-', 'O-', 'O+']
-            with torch.no_grad():
-                outputs = model(img_tensor)
-                _, predicted = torch.max(outputs, 1)
-                predicted_group_name = blood_groups[predicted.item()]
+            # Start a thread for prediction
+            thread = threading.Thread(target=predict_image, args=(file_path,))
+            thread.start()
+            thread.join()  # Wait for the thread to finish
 
             # Render the result page with the predicted blood group
-            return render_template('result.html', blood_group=predicted_group_name)
+            return render_template('result.html', blood_group=prediction_result)
     except Exception as e:
         return jsonify({'error': f'Prediction failed: {str(e)}'})
 
@@ -185,5 +198,4 @@ def logout():
 if __name__ == '__main__':
     import os
     port = int(os.environ.get('PORT', 5000))
-    app.run(debug=True, host='0.0.0.0', port=port)
-
+    app.run(debug=True, host='0.0.0.0', port=port, threaded=True)  # Enable threaded mode
