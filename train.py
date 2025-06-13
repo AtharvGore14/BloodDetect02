@@ -3,18 +3,25 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 <<<<<<< HEAD
+<<<<<<< HEAD
 from torchvision import datasets, transforms
 =======
 from torchvision import datasets, transforms, models
 from torchvision.models import ResNet18_Weights
 from torch.optim.lr_scheduler import StepLR
 >>>>>>> 8a39080 (bloodDetect)
+=======
+from torchvision import datasets, transforms, models
+from torchvision.models import ResNet18_Weights
+from torch.optim.lr_scheduler import StepLR
+>>>>>>> be213d54dd7748d7ab0c65220fcc176f62cd1ce9
 from torch.utils.data import DataLoader
 from PIL import ImageFile
 
 # Allow loading of truncated images
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 # Define Simple CNN Model
 class SimpleCNN(nn.Module):
@@ -70,6 +77,8 @@ def main():
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=0.001)
 =======
+=======
+>>>>>>> be213d54dd7748d7ab0c65220fcc176f62cd1ce9
 def main():
     print("🚀 Training started...")
 
@@ -98,21 +107,30 @@ def main():
     for param in model.parameters():
         param.requires_grad = True
     model.fc = nn.Linear(model.fc.in_features, len(train_dataset.classes))
+<<<<<<< HEAD
 >>>>>>> 8a39080 (bloodDetect)
+=======
+>>>>>>> be213d54dd7748d7ab0c65220fcc176f62cd1ce9
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model = model.to(device)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     # Training loop
 =======
+=======
+>>>>>>> be213d54dd7748d7ab0c65220fcc176f62cd1ce9
     # ✅ Loss Function + Optimizer + Scheduler
     criterion = nn.CrossEntropyLoss(label_smoothing=0.1)
     optimizer = optim.Adam(model.parameters(), lr=0.001)
     scheduler = StepLR(optimizer, step_size=5, gamma=0.5)
 
     # 🔁 Training Loop
+<<<<<<< HEAD
 >>>>>>> 8a39080 (bloodDetect)
+=======
+>>>>>>> be213d54dd7748d7ab0c65220fcc176f62cd1ce9
     EPOCHS = 20
     for epoch in range(EPOCHS):
         model.train()
@@ -121,10 +139,14 @@ def main():
         total = 0
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         for inputs, labels in data_loader:
 =======
         for inputs, labels in train_loader:
 >>>>>>> 8a39080 (bloodDetect)
+=======
+        for inputs, labels in train_loader:
+>>>>>>> be213d54dd7748d7ab0c65220fcc176f62cd1ce9
             inputs, labels = inputs.to(device), labels.to(device)
 
             optimizer.zero_grad()
@@ -139,19 +161,25 @@ def main():
             correct += predicted.eq(labels).sum().item()
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         epoch_loss = running_loss / len(data_loader)
         epoch_acc = 100. * correct / total
         print(f"📊 Epoch [{epoch + 1}/{EPOCHS}] | Loss: {epoch_loss:.4f} | Accuracy: {epoch_acc:.2f}%")
 
     # Save model
 =======
+=======
+>>>>>>> be213d54dd7748d7ab0c65220fcc176f62cd1ce9
         scheduler.step()
         epoch_loss = running_loss / len(train_loader)
         epoch_acc = 100. * correct / total
         print(f"📊 Epoch [{epoch+1}/{EPOCHS}] | Loss: {epoch_loss:.4f} | Accuracy: {epoch_acc:.2f}%")
 
     # 💾 Save Trained Model
+<<<<<<< HEAD
 >>>>>>> 8a39080 (bloodDetect)
+=======
+>>>>>>> be213d54dd7748d7ab0c65220fcc176f62cd1ce9
     torch.save(model.state_dict(), MODEL_SAVE_PATH)
     print(f"✅ Model saved at '{MODEL_SAVE_PATH}'")
 
