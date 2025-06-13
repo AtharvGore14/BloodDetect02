@@ -40,6 +40,7 @@
       line-height: 1.6;
       overflow-x: hidden;
       position: relative;
+      padding-top: 50px;
     }
 
     /* Animated background particles */
@@ -95,8 +96,26 @@
     }
 
     .logo-icon svg {
-      transform: rotate(-10deg); /* Only slightly left */
-      transition: transform 0.3s;
+      animation: swaySVG 2.5s ease-in-out infinite;
+      transition: filter 0.3s, animation 0.3s;
+    }
+    @keyframes swaySVG {
+      0% { transform: rotate(180deg); }
+      20% { transform: rotate(192deg); }
+      50% { transform: rotate(168deg); }
+      80% { transform: rotate(192deg); }
+      100% { transform: rotate(180deg); }
+    }
+    .logo-icon:hover svg {
+      animation: swaySVGHover 1.5s ease-in-out infinite;
+      filter: drop-shadow(0 0 12px #ff3b6ecc);
+    }
+    @keyframes swaySVGHover {
+      0% { transform: rotate(180deg); }
+      20% { transform: rotate(195deg); }
+      50% { transform: rotate(165deg); }
+      80% { transform: rotate(195deg); }
+      100% { transform: rotate(180deg); }
     }
 
     .logo {
@@ -489,8 +508,7 @@
       right: 30px;
       width: 380px;
       height: 500px;
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
+      background: #23243a;
       border: 1px solid var(--glass-border);
       border-radius: 20px;
       display: flex;
@@ -510,7 +528,7 @@
 
     .chat-header {
       padding: 20px;
-      background: rgba(255, 255, 255, 0.05);
+      background: #23243a;
       border-bottom: 1px solid var(--glass-border);
       display: flex;
       align-items: center;
@@ -536,6 +554,7 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
+      background: #23243a;
     }
 
     .message {
@@ -562,7 +581,7 @@
 
     .chat-input {
       padding: 20px;
-      background: rgba(255, 255, 255, 0.05);
+      background: #23243a;
       border-top: 1px solid var(--glass-border);
       display: flex;
       gap: 12px;
@@ -570,7 +589,7 @@
 
     .chat-input input {
       flex: 1;
-      background: rgba(255, 255, 255, 0.05);
+      background: #23243a;
       border: 1px solid var(--glass-border);
       border-radius: 8px;
       padding: 12px 16px;
@@ -645,6 +664,30 @@
       .features-section {
         padding: 3rem 2rem;
       }
+    }
+
+    .thinking {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-left: 2px;
+      height: 1.5em;
+      justify-content: flex-start;
+    }
+    .thinking span {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #fff;
+      border-radius: 50%;
+      opacity: 0.5;
+      animation: thinkingBounce 1.2s infinite;
+    }
+    .thinking span:nth-child(2) { animation-delay: 0.2s; }
+    .thinking span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes thinkingBounce {
+      0%, 80%, 100% { opacity: 0.5; transform: translateY(0); }
+      40% { opacity: 1; transform: translateY(-6px); }
     }
   </style>
 </head>
@@ -734,7 +777,7 @@
 
           <div class="hero-stats">
             <div class="stat-item">
-              <div class="stat-value">98%</div>
+              <div class="stat-value">-</div>
               <div class="stat-label">Detection Accuracy</div>
             </div>
             <div class="stat-item">
