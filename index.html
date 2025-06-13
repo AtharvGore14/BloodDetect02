@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for character encoding and responsive design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon for the website -->
+    <link rel="icon" type="image/png" href="logo.png">
+
+    <!-- Title of the webpage -->
+    <title>Sign Language Translator</title>
+
+    <!-- External stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="indexStyle.css"> <!-- Custom CSS for styling -->
+</head>
+<body>
+    <!-- Header section -->
+    <header id="header">
+        <div class="header-container">
+            <!-- Logo and website name -->
+            <div class="logo-container">
+                <i class="fas fa-hand-sparkles logo-icon"></i> <!-- Hand icon -->
+                <a href="Training.html" class="logo">Sign Language Translator</a> <!-- Website name -->
+            </div>
+
+            <!-- Mobile menu button (hidden on larger screens) -->
+            <button class="mobile-menu-button" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i> <!-- Hamburger menu icon -->
+            </button>
+
+            <!-- Overlay for mobile menu (hidden by default) -->
+            <div class="mobile-overlay"></div>
+
+            <!-- Navigation menu and call-to-action button -->
+            <div class="nav-container">
+                <nav class="main-nav">
+                    <!-- Home link -->
+                    <div class="nav-item">
+                        <a href="#" class="nav-link active">
+                            <i class="fas fa-home nav-icon"></i>Home <!-- Home icon -->
+                        </a>
+                    </div>
+                    <!-- Tutorial link -->
+                    <div class="nav-item">
+                        <a href="tutorial.html" class="nav-link">
+                            <i class="fas fa-book-open nav-icon"></i>Tutorial <!-- Tutorial icon -->
+                        </a>
+                    </div>
+                    <!-- Training link -->
+                    <div class="nav-item">
+                        <a href="Training.html" class="nav-link">
+                            <i class="fas fa-dumbbell nav-icon"></i>Training <!-- Training icon -->
+                        </a>
+                    </div>
+                    <!-- About link -->
+                    <div class="nav-item">
+                        <a href="About.html" class="nav-link">
+                            <i class="fas fa-info-circle nav-icon"></i>About <!-- About icon -->
+                        </a>
+                    </div>
+                </nav>
+
+                <!-- Call-to-action button -->
+                <a href="Training.html" class="btn btn-primary">
+                    Get Started <!-- Button text -->
+                    <i class="fas fa-arrow-right btn-icon"></i> <!-- Arrow icon -->
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main content of the webpage -->
+    <main>
+        <!-- Hero section -->
+        <section class="hero-section">
+            <div class="hero-container">
+                <!-- Hero content (text and buttons) -->
+                <div class="hero-content">
+                    <div class="hero-subtitle">
+                        <i class="fas fa-check-circle"></i> Sign Language Translator <!-- Subtitle with check icon -->
+                    </div>
+                    <h1 class="hero-title">Transform Hand Signs into Digital Communication</h1> <!-- Main heading -->
+                    <p class="hero-description">Experience the future of gesture recognition technology. Train custom models, learn common hand signs, and bridge communication gaps with our advanced AI platform.</p> <!-- Description -->
+
+                    <!-- Buttons in the hero section -->
+                    <div class="hero-buttons">
+                        <a href="Training.html" class="btn btn-primary">
+                            Start Training <!-- Primary button -->
+                            <i class="fas fa-rocket btn-icon"></i> <!-- Rocket icon -->
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=v1desDduz5M" class="btn btn-outline">
+                            <i class="fas fa-play"></i> Watch Demo <!-- Outline button with play icon -->
+                        </a>
+                    </div>
+
+                    <!-- Stats section -->
+                    <div class="hero-stats">
+                        <!-- Recognition accuracy stat -->
+                        <div class="stat-item">
+                            <div class="stat-value">98%</div>
+                            <div class="stat-label">Recognition Accuracy</div>
+                        </div>
+                        <!-- Active users stat -->
+                        <div class="stat-item">
+                            <div class="stat-value">-</div>
+                            <div class="stat-label">Active Users</div>
+                        </div>
+                        <!-- Supported gestures stat -->
+                        <div class="stat-item">
+                            <div class="stat-value">200+</div>
+                            <div class="stat-label">Supported Gestures</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero image (SVG illustration) -->
+                <div class="hero-image floating">
+                    <div class="hero-svg-container">
+                        <!-- SVG illustration of a hand with digital elements -->
+                        <svg width="400" height="350" viewBox="0 0 400 350" xmlns="http://www.w3.org/2000/svg" class="animated-hand">
+                            <!-- Background circles -->
+                            <circle cx="200" cy="180" r="150" fill="#EBF4FF" />
+                            <circle cx="200" cy="180" r="120" fill="#D1E5FE" opacity="0.7" />
+
+                            <!-- Hand outline -->
+                            <path d="M150,130 Q180,120 200,150 Q210,120 230,130 Q250,120 260,140 Q280,130 290,150 C300,180 300,220 290,240 C280,260 270,275 250,280 C230,285 190,290 170,280 C150,270 140,250 130,220 C120,190 130,150 150,130 Z" 
+                                  fill="#FFFFFF" 
+                                  stroke="#3B82F6" 
+                                  stroke-width="3"/>
+
+                            <!-- Fingers -->
+                            <path d="M170,130 Q180,110 190,130" stroke="#3B82F6" stroke-width="2" fill="none" />
+                            <path d="M200,130 Q210,100 220,130" stroke="#3B82F6" stroke-width="2" fill="none" />
+                            <path d="M230,130 Q240,105 250,130" stroke="#3B82F6" stroke-width="2" fill="none" />
+                            <path d="M260,140 Q270,120 280,140" stroke="#3B82F6" stroke-width="2" fill="none" />
+
+                            <!-- Palm lines -->
+                            <path d="M160,180 Q190,200 220,180" stroke="#3B82F6" stroke-width="1.5" fill="none" />
+                            <path d="M170,210 Q200,230 230,210" stroke="#3B82F6" stroke-width="1.5" fill="none" />
+                            <path d="M190,150 L190,240" stroke="#3B82F6" stroke-width="1.5" fill="none" />
+                            <path d="M230,150 L230,240" stroke="#3B82F6" stroke-width="1.5" fill="none" />
+
+                            <!-- Digital elements (circles and lines) -->
+                            <circle cx="185" cy="180" r="8" fill="#60A5FA" opacity="0.8" />
+                            <circle cx="235" cy="190" r="6" fill="#8B5CF6" opacity="0.8" />
+                            <circle cx="210" cy="210" r="10" fill="#3B82F6" opacity="0.8" />
+                            <path d="M185,180 L210,210 L235,190" stroke="#3B82F6" stroke-width="2" fill="none" />
+                            <path d="M210,210 L210,260" stroke="#3B82F6" stroke-width="2" fill="none" stroke-dasharray="4 2" />
+
+                            <!-- Binary data visual -->
+                            <text x="150" y="280" fill="#3B82F6" font-family="monospace" font-size="8">10101</text>
+                            <text x="190" y="290" fill="#8B5CF6" font-family="monospace" font-size="8">01010</text>
+                            <text x="230" y="280" fill="#3B82F6" font-family="monospace" font-size="8">10101</text>
+
+                            <!-- AI recognition overlay effect -->
+                            <rect x="160" y="160" width="120" height="80" fill="none" stroke="#60A5FA" stroke-width="1" stroke-dasharray="3 2" rx="10" ry="10" />
+
+                            <!-- Visual scan line animation -->
+                            <line x1="160" y1="190" x2="280" y2="190" stroke="#3B82F6" stroke-width="1.5" opacity="0.7">
+                                <animate attributeName="y1" values="160;240;160" dur="3s" repeatCount="indefinite" />
+                                <animate attributeName="y2" values="160;240;160" dur="3s" repeatCount="indefinite" />
+                                <animate attributeName="opacity" values="0.2;0.8;0.2" dur="3s" repeatCount="indefinite" />
+                            </line>
+                        </svg>
+                    </div>
+                    <!-- Decorative shapes -->
+                    <div class="hero-shape-1"></div>
+                    <div class="hero-shape-2"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features section -->
+        <section class="features-section">
+            <div class="section-title-container">
+                <div class="section-subtitle">Key Features</div> <!-- Subtitle -->
+                <h2 class="section-title">Everything You Need For Hand Sign Recognition</h2> <!-- Title -->
+                <p class="section-description">Our platform offers powerful tools to help you recognize, learn, and communicate with hand gestures.</p> <!-- Description -->
+            </div>
+        </section>
+    </main>
+</body>
+</html>

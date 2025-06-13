@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
 
 <head>
   <meta charset="UTF-8" />
@@ -18,12 +19,39 @@
       --accent: #ff5252;
       --gradient-dark: linear-gradient(135deg, #f84a4a, #8b0000);
       --gradient-light: linear-gradient(135deg, #ff9a9e, #fad0c4);
+=======
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About - BloodDetect</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+    
+    :root {
+      --primary-red: #e11d48;
+      --primary-blue: #0ea5e9;
+      --accent-purple: #8b5cf6;
+      --accent-pink: #ec4899;
+      --dark-bg: #0f0f23;
+      --darker-bg: #070720;
+      --card-bg: rgba(15, 15, 35, 0.8);
+      --glass-bg: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --gradient-primary: linear-gradient(135deg, #e11d48, #8b5cf6);
+      --gradient-secondary: linear-gradient(135deg, #0ea5e9, #ec4899);
+      --gradient-bg: linear-gradient(135deg, #0f0f23 0%, #1e1b4b 50%, #0f0f23 100%);
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+<<<<<<< HEAD
       font-family: 'Poppins', sans-serif;
       scroll-behavior: smooth;
     }
@@ -59,10 +87,86 @@
       content: '🩸';
       margin-right: 10px;
       font-size: 1.5rem;
+=======
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--gradient-bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Animated background particles */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 50%, rgba(225, 29, 72, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 20%, rgba(14, 165, 233, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 40% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: -1;
+      animation: backgroundShift 20s ease-in-out infinite;
+    }
+
+    @keyframes backgroundShift {
+      0%, 100% { opacity: 1; }
+      33% { opacity: 0.8; }
+      66% { opacity: 0.6; }
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 5rem;
+      background: rgba(15, 15, 35, 0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-border);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    .navbar h1 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.8rem;
+      font-weight: 600;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+    }
+
+    .navbar h1::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--gradient-primary);
+      transform: scaleX(0);
+      animation: logoUnderline 2s ease-out forwards;
+    }
+
+    @keyframes logoUnderline {
+      to { transform: scaleX(1); }
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     .navbar nav {
       display: flex;
+<<<<<<< HEAD
       gap: 1.5rem;
     }
 
@@ -147,11 +251,101 @@
         opacity: 1;
         transform: translateY(0);
       }
+=======
+      gap: 2rem;
+    }
+
+    .navbar nav a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .navbar nav a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--gradient-primary);
+      opacity: 0.1;
+      transition: left 0.3s ease;
+      z-index: -1;
+    }
+
+    .navbar nav a:hover::before,
+    .navbar nav a.active::before {
+      left: 0;
+    }
+
+    .navbar nav a:hover,
+    .navbar nav a.active {
+      color: var(--text-primary);
+      transform: translateY(-2px);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      position: relative;
+      height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      text-align: center;
+      max-width: 900px;
+      padding: 3rem;
+      background: rgba(15, 15, 35, 0.6);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+      animation: heroFadeIn 1s ease-out;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-content::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, transparent, rgba(225, 29, 72, 0.1), transparent, rgba(14, 165, 233, 0.1), transparent);
+      animation: rotate 20s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes heroFadeIn {
+      from { 
+        opacity: 0; 
+        transform: translateY(30px) scale(0.95); 
+      }
+      to { 
+        opacity: 1; 
+        transform: translateY(0) scale(1); 
+      }
+    }
+
+    @keyframes rotate {
+      to { transform: rotate(360deg); }
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     .hero-content h1 {
       font-size: 3.5rem;
       font-weight: 700;
+<<<<<<< HEAD
       margin-bottom: 1rem;
       text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
       position: relative;
@@ -201,29 +395,120 @@
       box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
       margin-bottom: 3rem;
       transition: transform 0.3s ease;
+=======
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, var(--text-primary), var(--primary-blue), var(--accent-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: textShimmer 3s ease-in-out infinite;
+    }
+
+    @keyframes textShimmer {
+      0%, 100% { filter: brightness(1); }
+      50% { filter: brightness(1.2); }
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    /* Main Container */
+    .main-container {
+      max-width: 1200px;
+      margin: -50px auto 0;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Content Sections */
+    .content-section {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      margin-bottom: 3rem;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      position: relative;
+    }
+
+    .content-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .content-section:hover::before {
+      left: 100%;
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     .content-section:hover {
       transform: translateY(-5px);
+<<<<<<< HEAD
     }
 
     .content-header {
       padding: 2rem;
       background: var(--gradient-dark);
       color: white;
+=======
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .content-header {
+      padding: 2.5rem;
+      background: var(--gradient-primary);
+>>>>>>> 8a39080 (bloodDetect)
       position: relative;
       overflow: hidden;
     }
 
+<<<<<<< HEAD
     .content-header h2 {
       font-size: 2rem;
       margin-bottom: 0.5rem;
       position: relative;
       z-index: 1;
+=======
+    .content-header::after {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 100px;
+      height: 100px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+    }
+
+    .content-header h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: white;
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     .content-header .subtitle {
       font-size: 1.1rem;
+<<<<<<< HEAD
       opacity: 0.9;
       position: relative;
       z-index: 1;
@@ -258,6 +543,33 @@
       margin: 2.5rem 0;
       z-index: 1;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+=======
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 400;
+    }
+
+    .content-body {
+      padding: 2.5rem;
+    }
+
+    .content-body p {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    /* Highlight Box */
+    .highlight-box {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 3rem;
+      margin: 3rem 0;
+      position: relative;
+      overflow: hidden;
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     .highlight-box::before {
@@ -267,6 +579,7 @@
       left: 0;
       width: 100%;
       height: 100%;
+<<<<<<< HEAD
       background: url("{{ url_for('static', filename='9.jpg') }}") no-repeat center center/cover;
       z-index: -1;
       transition: transform 0.5s ease;
@@ -284,28 +597,55 @@
       width: 100%;
       height: 100%;
       background: rgba(0, 0, 0, 0.6);
+=======
+      background: linear-gradient(45deg, 
+        rgba(225, 29, 72, 0.05) 0%, 
+        rgba(139, 92, 246, 0.05) 50%, 
+        rgba(14, 165, 233, 0.05) 100%);
+>>>>>>> 8a39080 (bloodDetect)
       z-index: -1;
     }
 
     .highlight-box h2 {
       font-size: 2rem;
+<<<<<<< HEAD
       margin-bottom: 1rem;
       color: white;
+=======
+      margin-bottom: 1.5rem;
+      background: var(--gradient-secondary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     .highlight-box p {
       font-size: 1.1rem;
+<<<<<<< HEAD
       line-height: 1.7;
     }
 
     .info-cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+=======
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    /* Info Cards */
+    .info-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+>>>>>>> 8a39080 (bloodDetect)
       gap: 2rem;
       margin: 3rem 0;
     }
 
     .info-card {
+<<<<<<< HEAD
       background: white;
       border-radius: 12px;
       overflow: hidden;
@@ -344,17 +684,99 @@
       line-height: 1.6;
     }
 
+=======
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      position: relative;
+    }
+
+    .info-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--gradient-primary);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+
+    .info-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .info-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .info-card-icon {
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--gradient-primary);
+      font-size: 2.5rem;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .info-card-icon::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      animation: iconRotate 8s linear infinite;
+    }
+
+    @keyframes iconRotate {
+      to { transform: rotate(360deg); }
+    }
+
+    .info-card-content {
+      padding: 2rem;
+    }
+
+    .info-card-content h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+
+    .info-card-content p {
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* Process Section */
+>>>>>>> 8a39080 (bloodDetect)
     .process-section {
       padding: 4rem 0;
     }
 
     .section-heading {
       text-align: center;
+<<<<<<< HEAD
       margin-bottom: 3rem;
+=======
+      margin-bottom: 4rem;
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     .section-heading h2 {
       font-size: 2.5rem;
+<<<<<<< HEAD
       color: #450909ad;
       margin-bottom: 1rem;
       position: relative;
@@ -385,10 +807,32 @@
       flex-wrap: wrap;
       justify-content: center;
       position: relative;
+=======
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-heading p {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+>>>>>>> 8a39080 (bloodDetect)
       max-width: 1000px;
       margin: 0 auto;
     }
 
+<<<<<<< HEAD
     .process-steps::before {
       content: '';
       position: absolute;
@@ -408,27 +852,72 @@
       position: relative;
       z-index: 1;
       margin-bottom: 2rem;
+=======
+    .process-step {
+      text-align: center;
+      padding: 2rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .process-step::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(225, 29, 72, 0.1), rgba(139, 92, 246, 0.1));
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .process-step:hover::before {
+      opacity: 1;
+    }
+
+    .process-step:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255, 255, 255, 0.2);
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     .step-number {
       width: 60px;
       height: 60px;
+<<<<<<< HEAD
       background: var(--primary);
+=======
+      background: var(--gradient-primary);
+>>>>>>> 8a39080 (bloodDetect)
       color: white;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.5rem;
+<<<<<<< HEAD
       font-weight: bold;
       margin: 0 auto 1rem;
       position: relative;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+=======
+      font-weight: 600;
+      margin: 0 auto 1.5rem;
+      position: relative;
+      z-index: 1;
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     .step-number::after {
       content: '';
       position: absolute;
+<<<<<<< HEAD
       top: -8px;
       left: -8px;
       width: calc(100% + 16px);
@@ -526,6 +1015,47 @@
       background: var(--gradient-dark);
       padding: 5rem 0;
       color: white;
+=======
+      top: -5px;
+      left: -5px;
+      width: calc(100% + 10px);
+      height: calc(100% + 10px);
+      border-radius: 50%;
+      border: 2px solid rgba(225, 29, 72, 0.3);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.5; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .step-content h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-content p {
+      color: var(--text-secondary);
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Testimonial Section */
+    .testimonial-section {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      padding: 5rem 0;
+      margin: 4rem 0;
+      border-radius: 20px;
+      border: 1px solid var(--glass-border);
+>>>>>>> 8a39080 (bloodDetect)
       position: relative;
       overflow: hidden;
     }
@@ -537,14 +1067,23 @@
       left: 0;
       width: 100%;
       height: 100%;
+<<<<<<< HEAD
       background: url("{{ url_for('static', filename='y.jpg') }}") no-repeat center center/cover;
       opacity: 0.1;
       z-index: 0;
+=======
+      background: linear-gradient(45deg, 
+        rgba(225, 29, 72, 0.05), 
+        rgba(14, 165, 233, 0.05), 
+        rgba(139, 92, 246, 0.05));
+      z-index: -1;
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     .testimonial-container {
       max-width: 800px;
       margin: 0 auto;
+<<<<<<< HEAD
       padding: 0 1rem;
       position: relative;
       z-index: 1;
@@ -557,13 +1096,36 @@
       padding: 2rem;
       margin-bottom: 2rem;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+=======
+      padding: 0 2rem;
+    }
+
+    .testimonial {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      transition: all 0.4s ease;
+    }
+
+    .testimonial:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     .testimonial-text {
       font-style: italic;
       font-size: 1.1rem;
       line-height: 1.8;
+<<<<<<< HEAD
       margin-bottom: 1.5rem;
+=======
+      margin-bottom: 2rem;
+      color: var(--text-secondary);
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     .testimonial-author {
@@ -575,33 +1137,60 @@
       width: 50px;
       height: 50px;
       border-radius: 50%;
+<<<<<<< HEAD
       background: var(--primary-light);
+=======
+      background: var(--gradient-primary);
+>>>>>>> 8a39080 (bloodDetect)
       display: flex;
       align-items: center;
       justify-content: center;
       margin-right: 1rem;
       color: white;
+<<<<<<< HEAD
       font-weight: bold;
+=======
+      font-weight: 600;
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     .testimonial-info h4 {
       font-size: 1.1rem;
       margin-bottom: 0.2rem;
+<<<<<<< HEAD
+=======
+      color: var(--text-primary);
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     .testimonial-info p {
       font-size: 0.9rem;
+<<<<<<< HEAD
       opacity: 0.8;
     }
 
     .faq-section {
       padding: 5rem 0;
       background: #f5f5f5;
+=======
+      color: var(--text-muted);
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      padding: 5rem 0;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      border: 1px solid var(--glass-border);
+      margin: 4rem 0;
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     .faq-container {
       max-width: 800px;
       margin: 0 auto;
+<<<<<<< HEAD
       padding: 0 1rem;
     }
 
@@ -611,6 +1200,23 @@
       margin-bottom: 1.5rem;
       overflow: hidden;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+=======
+      padding: 0 2rem;
+    }
+
+    .faq-item {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .faq-item:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     .faq-question {
@@ -619,16 +1225,29 @@
       justify-content: space-between;
       align-items: center;
       cursor: pointer;
+<<<<<<< HEAD
       transition: background 0.3s;
+=======
+      transition: all 0.3s ease;
+    }
+
+    .faq-question:hover {
+      background: rgba(255, 255, 255, 0.05);
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     .faq-question h3 {
       font-size: 1.1rem;
+<<<<<<< HEAD
       color: var(--primary);
+=======
+      color: var(--text-primary);
+>>>>>>> 8a39080 (bloodDetect)
       font-weight: 600;
     }
 
     .faq-question i {
+<<<<<<< HEAD
       color: var(--primary);
       transition: transform 0.3s;
     }
@@ -647,17 +1266,59 @@
       position: relative;
     }
 
+=======
+      color: var(--primary-red);
+      transition: transform 0.3s ease;
+    }
+
+    .faq-answer {
+      padding: 0 1.5rem 1.5rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--darker-bg);
+      padding: 4rem 5% 2rem;
+      margin-top: 4rem;
+      border-top: 1px solid var(--glass-border);
+      position: relative;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--gradient-primary);
+    }
+
+>>>>>>> 8a39080 (bloodDetect)
     .footer-content {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 3rem;
+<<<<<<< HEAD
+=======
+      max-width: 1200px;
+      margin: 0 auto;
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     .footer-col h3 {
       font-size: 1.3rem;
       margin-bottom: 1.5rem;
+<<<<<<< HEAD
       position: relative;
       padding-bottom: 0.8rem;
+=======
+      color: var(--text-primary);
+      position: relative;
+      padding-bottom: 0.5rem;
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     .footer-col h3::after {
@@ -666,12 +1327,18 @@
       bottom: 0;
       left: 0;
       width: 50px;
+<<<<<<< HEAD
       height: 3px;
       background: var(--accent);
+=======
+      height: 2px;
+      background: var(--gradient-primary);
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     .footer-col p,
     .footer-col a {
+<<<<<<< HEAD
       color: #ddd;
       margin-bottom: 1rem;
       display: block;
@@ -681,18 +1348,38 @@
 
     .footer-col a:hover {
       color: var(--accent);
+=======
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+      display: block;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .footer-col a:hover {
+      color: var(--primary-red);
+>>>>>>> 8a39080 (bloodDetect)
       transform: translateX(5px);
     }
 
     .contact-info {
       display: flex;
+<<<<<<< HEAD
       align-items: baseline;
+=======
+      align-items: center;
+>>>>>>> 8a39080 (bloodDetect)
       margin-bottom: 1rem;
     }
 
     .contact-info i {
       margin-right: 10px;
+<<<<<<< HEAD
       color: var(--accent);
+=======
+      color: var(--primary-red);
+      width: 20px;
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     .copyright {
@@ -700,6 +1387,7 @@
       padding-top: 2rem;
       margin-top: 2rem;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
+<<<<<<< HEAD
       font-size: 0.9rem;
       color: #aaa;
     }
@@ -712,20 +1400,76 @@
 
       .navbar h1 {
         margin-bottom: 1rem;
+=======
+      color: var(--text-muted);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        padding: 1.5rem 2rem;
+        gap: 1rem;
+      }
+
+      .navbar nav {
+        gap: 1rem;
+      }
+
+      .hero-content {
+        padding: 2rem;
+        margin: 0 1rem;
+>>>>>>> 8a39080 (bloodDetect)
       }
 
       .hero-content h1 {
         font-size: 2.5rem;
       }
 
+<<<<<<< HEAD
+=======
+      .main-container {
+        padding: 0 1rem;
+      }
+
+>>>>>>> 8a39080 (bloodDetect)
       .info-cards {
         grid-template-columns: 1fr;
       }
 
+<<<<<<< HEAD
       .process-steps::before {
         display: none;
       }
     }
+=======
+      .process-steps {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Smooth scrolling and animations */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Add some micro-interactions */
+    .info-card-icon i {
+      transition: transform 0.3s ease;
+    }
+
+    .info-card:hover .info-card-icon i {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .step-number {
+      transition: all 0.3s ease;
+    }
+
+    .process-step:hover .step-number {
+      transform: scale(1.1);
+    }
+>>>>>>> 8a39080 (bloodDetect)
   </style>
 </head>
 
@@ -743,9 +1487,12 @@
 
   <!-- Hero Section -->
   <section class="hero-section">
+<<<<<<< HEAD
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
     <div class="hero-particles" id="particles-js"></div>
+=======
+>>>>>>> 8a39080 (bloodDetect)
     <div class="hero-content">
       <h1>About BloodDetect</h1>
       <p>Revolutionizing healthcare with AI-powered fingerprint analysis for non-invasive blood group detection</p>
@@ -762,6 +1509,7 @@
           <p class="subtitle">Where biometrics meets hematology</p>
         </div>
         <div class="content-body">
+<<<<<<< HEAD
           <p>Fingerprints are unique to each individual, formed by ridges and valleys on the skin's surface. Even
             identical twins have distinct fingerprints. This uniqueness arises from both genetic and environmental
             factors during fetal development, making fingerprints a reliable biometric identifier.</p>
@@ -773,18 +1521,30 @@
           <p>Through extensive research and advanced machine learning algorithms, we've identified subtle relationships
             between dermatoglyphic patterns and blood group determination. Our proprietary neural network can now
             predict blood types with remarkable accuracy from a simple fingerprint scan.</p>
+=======
+          <p>Fingerprints are unique to each individual, formed by ridges and valleys on the skin's surface. Even identical twins have distinct fingerprints. This uniqueness arises from both genetic and environmental factors during fetal development, making fingerprints a reliable biometric identifier.</p>
+          
+          <p>The patterns—loops, whorls, and arches—are widely used in forensic science and identity verification due to their stability and individuality. At BloodDetect, we've harnessed this biological uniqueness and discovered correlations between fingerprint patterns and blood group antigens.</p>
+          
+          <p>Through extensive research and advanced machine learning algorithms, we've identified subtle relationships between dermatoglyphic patterns and blood group determination. Our proprietary neural network can now predict blood types with remarkable accuracy from a simple fingerprint scan.</p>
+>>>>>>> 8a39080 (bloodDetect)
         </div>
       </div>
 
       <!-- How It Works Section -->
       <div class="highlight-box">
         <h2>The Science Behind BloodDetect</h2>
+<<<<<<< HEAD
         <p>Blood group antigens, like A, B, AB, and O, are determined by specific inherited alleles. These genes may be
           linked to physical traits that influence fingerprint patterns. Research has shown that certain ridge patterns
           occur with varying frequencies among different blood groups.</p>
         <p>Our AI analyzes minutiae points, ridge density, pattern type, and over 30 other biometric markers to
           establish correlations with blood antigens. The relationship between dermatoglyphics and blood groups stems
           from their shared embryonic origin during the first trimester of fetal development.</p>
+=======
+        <p>Blood group antigens, like A, B, AB, and O, are determined by specific inherited alleles. These genes may be linked to physical traits that influence fingerprint patterns. Research has shown that certain ridge patterns occur with varying frequencies among different blood groups.</p>
+        <p>Our AI analyzes minutiae points, ridge density, pattern type, and over 30 other biometric markers to establish correlations with blood antigens. The relationship between dermatoglyphics and blood groups stems from their shared embryonic origin during the first trimester of fetal development.</p>
+>>>>>>> 8a39080 (bloodDetect)
       </div>
 
       <!-- Info Cards -->
@@ -795,33 +1555,51 @@
           </div>
           <div class="info-card-content">
             <h3>Dermatoglyphic Analysis</h3>
+<<<<<<< HEAD
             <p>Our algorithm examines ridge patterns, bifurcations, and terminations in fingerprints to identify unique
               markers corresponding to specific blood antigens. Ridge density and pattern distribution vary
               significantly between blood types, providing reliable indicators for our predictive model.</p>
           </div>
         </div>
 
+=======
+            <p>Our algorithm examines ridge patterns, bifurcations, and terminations in fingerprints to identify unique markers corresponding to specific blood antigens. Ridge density and pattern distribution vary significantly between blood types, providing reliable indicators for our predictive model.</p>
+          </div>
+        </div>
+        
+>>>>>>> 8a39080 (bloodDetect)
         <div class="info-card">
           <div class="info-card-icon">
             <i class="fas fa-dna"></i>
           </div>
           <div class="info-card-content">
             <h3>Genetic Correlation</h3>
+<<<<<<< HEAD
             <p>Both blood groups and fingerprint patterns are genetically determined. The genes controlling blood
               antigen expression may influence embryonic development of ridge patterns. Our research has identified
               specific ridge configurations that consistently appear with higher frequency in certain blood groups.</p>
           </div>
         </div>
 
+=======
+            <p>Both blood groups and fingerprint patterns are genetically determined. The genes controlling blood antigen expression may influence embryonic development of ridge patterns. Our research has identified specific ridge configurations that consistently appear with higher frequency in certain blood groups.</p>
+          </div>
+        </div>
+        
+>>>>>>> 8a39080 (bloodDetect)
         <div class="info-card">
           <div class="info-card-icon">
             <i class="fas fa-brain"></i>
           </div>
           <div class="info-card-content">
             <h3>AI & Machine Learning</h3>
+<<<<<<< HEAD
             <p>Our deep learning neural network has been trained on over 6000 fingerprint samples with verified blood
               types. Using convolutional networks and ensemble learning, the system can now predict blood groups with up
               to accuracy, constantly improving through continuous learning.</p>
+=======
+            <p>Our deep learning neural network has been trained on over 6000 fingerprint samples with verified blood types. Using convolutional networks and ensemble learning, the system can now predict blood groups with high accuracy, constantly improving through continuous learning.</p>
+>>>>>>> 8a39080 (bloodDetect)
           </div>
         </div>
       </div>
@@ -832,11 +1610,16 @@
           <h2>How BloodDetect Works</h2>
           <p>A simple, non-invasive process to determine your blood group</p>
         </div>
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 8a39080 (bloodDetect)
         <div class="process-steps">
           <div class="process-step">
             <div class="step-number">1</div>
             <div class="step-content">
+<<<<<<< HEAD
               <h3>Fingerprint Scan</h3>
               <p>Simply place your finger on our high-resolution scanner for a quick, painless capture of your
                 fingerprint.</p>
@@ -1051,3 +1834,30 @@
 </script>
 
 </html>
+=======
+              <h3>Upload Your Fingerprint</h3>
+              <p>Upload a clear and well-lit image of your finger.</p>
+            </div>
+          </div>
+          
+          <div class="process-step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>Process and Analyze</h3>
+              <p>Our AI analyzes the fingerprint image to extract features and determine your blood group.</p>
+            </div>
+          </div>
+          
+          <div class="process-step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3>Result</h3>
+              <p>Receive your blood group result in seconds.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>   
+>>>>>>> 8a39080 (bloodDetect)

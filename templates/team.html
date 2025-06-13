@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Our Team - BloodDetect</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<<<<<<< HEAD
   <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -12,6 +13,17 @@
       --primary: #8b0000;
       --primary-light: #b71c1c;
       --secondary: #f8f8f8;
+=======
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Orbitron:wght@400;600;900&display=swap');
+    
+    :root {
+      --neon-red: #ff003c;
+      --neon-blue: #00f7ff;
+      --dark-bg: #0a0a0a;
+      --glass-bg: rgba(255, 255, 255, 0.08);
+>>>>>>> 8a39080 (bloodDetect)
       --text-dark: #333;
       --text-light: #f8f8f8;
       --accent: #ff5252;
@@ -25,6 +37,7 @@
     }
 
     body {
+<<<<<<< HEAD
       background: #f9f9f9;
       color: var(--text-dark);
     }
@@ -53,10 +66,54 @@
       content: '🩸';
       margin-right: 10px;
       font-size: 1.5rem;
+=======
+      background-color: var(--dark-bg);
+      color: var(--text-light);
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(255, 0, 60, 0.2) 0%, transparent 35%),
+        radial-gradient(circle at 90% 80%, rgba(0, 247, 255, 0.2) 0%, transparent 35%);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem 6rem;
+      background: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(15px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 5px 25px rgba(255, 0, 60, 0.3);
+      border-bottom: 1px solid rgba(255, 0, 60, 0.3);
+    }
+
+    .navbar h1 {
+      font-family: 'Orbitron', sans-serif;
+      color: #fff;
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-shadow: 
+        0 0 5px var(--neon-red),
+        0 0 15px var(--neon-red),
+        0 0 30px var(--neon-red);
+      animation: pulse 3s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% {
+        text-shadow: 0 0 5px var(--neon-red), 0 0 15px var(--neon-red);
+      }
+      100% {
+        text-shadow: 0 0 10px var(--neon-red), 0 0 30px var(--neon-red), 0 0 50px var(--neon-red);
+      }
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     .navbar nav {
       display: flex;
+<<<<<<< HEAD
       gap: 1.5rem;
     }
 
@@ -77,6 +134,56 @@
     .navbar nav a.active {
       background: rgba(255,255,255,0.3);
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+=======
+      align-items: center;
+    }
+
+    .navbar nav a {
+      margin: 0 1.5rem;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      position: relative;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 0.5rem 0.8rem;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+    }
+
+    .navbar nav a.active {
+      color: var(--neon-red);
+      border: 1px solid var(--neon-red);
+      box-shadow: 0 0 10px var(--neon-red);
+      font-weight: 600;
+    }
+
+    .navbar nav a:hover {
+      color: var(--neon-red);
+      transform: translateY(-3px) scale(1.05);
+      letter-spacing: 2px;
+    }
+
+    .navbar nav a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--neon-red);
+      z-index: -1;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.5s ease;
+      opacity: 0.2;
+    }
+
+    .navbar nav a:hover::before {
+      transform: scaleX(1);
+      transform-origin: left;
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     .hero-section {
@@ -123,8 +230,13 @@
       box-shadow: 0 15px 30px rgba(0,0,0,0.3);
       transform: translateY(0);
       animation: float 3s ease-in-out infinite;
+<<<<<<< HEAD
     }
     
+=======
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+>>>>>>> 8a39080 (bloodDetect)
 
     @keyframes float {
       0%, 100% {
@@ -136,10 +248,15 @@
     }
 
     .hero-content h1 {
+<<<<<<< HEAD
+=======
+      font-family: 'Orbitron', sans-serif;
+>>>>>>> 8a39080 (bloodDetect)
       font-size: 3.5rem;
       font-weight: 700;
       margin-bottom: 1rem;
       text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+<<<<<<< HEAD
       position: relative;
       display: inline-block;
       padding-bottom: 10px;
@@ -168,6 +285,12 @@
         width: 100%;
         opacity: 1;
       }
+=======
+      background: linear-gradient(90deg, #fff, var(--neon-blue));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     .hero-content p {
@@ -175,11 +298,19 @@
       line-height: 1.6;
       max-width: 600px;
       margin: 0 auto;
+<<<<<<< HEAD
+=======
+      color: rgba(255, 255, 255, 0.9);
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     .team-section {
       padding: 5rem 5%;
+<<<<<<< HEAD
       background: var(--secondary);
+=======
+      background: transparent;
+>>>>>>> 8a39080 (bloodDetect)
       position: relative;
     }
 
@@ -190,8 +321,14 @@
     }
 
     .section-heading h2 {
+<<<<<<< HEAD
       font-size: 2.5rem;
       color: var(--primary);
+=======
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5rem;
+      color: var(--neon-blue);
+>>>>>>> 8a39080 (bloodDetect)
       margin-bottom: 1rem;
       position: relative;
       display: inline-block;
@@ -205,12 +342,22 @@
       transform: translateX(-50%);
       width: 80px;
       height: 4px;
+<<<<<<< HEAD
       background: var(--accent);
       border-radius: 2px;
     }
 
     .section-heading p {
       color: var(--text-dark);
+=======
+      background: var(--neon-red);
+      border-radius: 2px;
+      box-shadow: 0 0 10px var(--neon-red);
+    }
+
+    .section-heading p {
+      color: rgba(255, 255, 255, 0.9);
+>>>>>>> 8a39080 (bloodDetect)
       font-size: 1.1rem;
       max-width: 600px;
       margin: 0 auto;
@@ -224,17 +371,30 @@
     }
 
     .team-member {
+<<<<<<< HEAD
       background: white;
+=======
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+>>>>>>> 8a39080 (bloodDetect)
       border-radius: 16px;
       overflow: hidden;
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       position: relative;
+<<<<<<< HEAD
+=======
+      border: 1px solid rgba(255, 255, 255, 0.1);
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     .team-member:hover {
       transform: translateY(-15px) scale(1.02);
       box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+<<<<<<< HEAD
+=======
+      border-color: var(--neon-blue);
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     .team-member::before {
@@ -244,21 +404,37 @@
       left: 0;
       width: 100%;
       height: 6px;
+<<<<<<< HEAD
       background: linear-gradient(90deg, var(--primary-light), var(--accent));
+=======
+      background: linear-gradient(90deg, var(--neon-red), var(--neon-blue));
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     .member-photo {
       height: 180px;
+<<<<<<< HEAD
       background: linear-gradient(45deg, #f4464d, #fad0c4);
+=======
+      background: linear-gradient(45deg, rgba(255, 0, 60, 0.2), rgba(0, 247, 255, 0.2));
+>>>>>>> 8a39080 (bloodDetect)
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
+<<<<<<< HEAD
+=======
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     .member-photo i {
       font-size: 5rem;
       color: rgba(255,255,255,0.8);
+<<<<<<< HEAD
+=======
+      filter: drop-shadow(0 0 10px var(--neon-blue));
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     .team-info {
@@ -268,6 +444,7 @@
     }
 
     .team-info h3 {
+<<<<<<< HEAD
       color: var(--primary);
       font-size: 1.5rem;
       margin-bottom: 0.5rem;
@@ -276,13 +453,28 @@
 
     .team-info p {
       color: var(--text-dark);
+=======
+      color: var(--neon-blue);
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .team-info p {
+      color: rgba(255, 255, 255, 0.9);
+>>>>>>> 8a39080 (bloodDetect)
       margin-bottom: 0.5rem;
       font-size: 0.95rem;
     }
 
     .member-role {
       font-weight: 500;
+<<<<<<< HEAD
       color: var(--accent);
+=======
+      color: var(--neon-red);
+>>>>>>> 8a39080 (bloodDetect)
       margin-bottom: 1rem;
     }
 
@@ -300,6 +492,7 @@
       width: 40px;
       height: 40px;
       border-radius: 50%;
+<<<<<<< HEAD
       background: #f5f5f5;
       color: var(--primary);
       font-size: 1.2rem;
@@ -310,6 +503,20 @@
       background: var(--primary);
       color: white;
       transform: translateY(-3px);
+=======
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--neon-blue);
+      font-size: 1.2rem;
+      transition: all 0.3s;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .social-links a:hover {
+      background: var(--neon-blue);
+      color: var(--dark-bg);
+      transform: translateY(-3px);
+      box-shadow: 0 0 15px var(--neon-blue);
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     .footer {
@@ -317,6 +524,21 @@
       background: linear-gradient(135deg, #333, #222);
       color: white;
       position: relative;
+<<<<<<< HEAD
+=======
+      border-top: 1px solid rgba(255, 0, 60, 0.3);
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--neon-red), var(--neon-blue));
+      filter: blur(3px);
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     .footer-content {
@@ -326,6 +548,10 @@
     }
 
     .footer-col h3 {
+<<<<<<< HEAD
+=======
+      font-family: 'Orbitron', sans-serif;
+>>>>>>> 8a39080 (bloodDetect)
       font-size: 1.3rem;
       margin-bottom: 1.5rem;
       position: relative;
@@ -339,11 +565,19 @@
       left: 0;
       width: 50px;
       height: 3px;
+<<<<<<< HEAD
       background: var(--accent);
     }
 
     .footer-col p, .footer-col a {
       color: #ddd;
+=======
+      background: var(--neon-blue);
+    }
+
+    .footer-col p, .footer-col a {
+      color: rgba(255, 255, 255, 0.7);
+>>>>>>> 8a39080 (bloodDetect)
       margin-bottom: 1rem;
       display: block;
       text-decoration: none;
@@ -351,19 +585,31 @@
     }
 
     .footer-col a:hover {
+<<<<<<< HEAD
       color: var(--accent);
+=======
+      color: var(--neon-blue);
+>>>>>>> 8a39080 (bloodDetect)
       transform: translateX(5px);
     }
 
     .contact-info {
       display: flex;
+<<<<<<< HEAD
       align-items: baseline;
+=======
+      align-items: center;
+>>>>>>> 8a39080 (bloodDetect)
       margin-bottom: 1rem;
     }
 
     .contact-info i {
       margin-right: 10px;
+<<<<<<< HEAD
       color: var(--accent);
+=======
+      color: var(--neon-blue);
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     .copyright {
@@ -372,14 +618,25 @@
       margin-top: 2rem;
       border-top: 1px solid rgba(255,255,255,0.1);
       font-size: 0.9rem;
+<<<<<<< HEAD
       color: #aaa;
+=======
+      color: rgba(255, 255, 255, 0.5);
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     .blood-particle {
       position: absolute;
+<<<<<<< HEAD
       background: rgba(255,0,0,0.3);
       border-radius: 50%;
       animation: float-particle 15s infinite linear;
+=======
+      background: rgba(255,0,60,0.3);
+      border-radius: 50%;
+      animation: float-particle 15s infinite linear;
+      box-shadow: 0 0 10px var(--neon-red);
+>>>>>>> 8a39080 (bloodDetect)
     }
 
     @keyframes float-particle {
@@ -399,6 +656,7 @@
       }
     }
 
+<<<<<<< HEAD
     .btn {
       display: inline-block;
       padding: 0.8rem 2rem;
@@ -427,6 +685,23 @@
       
       .navbar h1 {
         margin-bottom: 1rem;
+=======
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        padding: 1.5rem 2rem;
+        gap: 1.5rem;
+      }
+      
+      .navbar nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .navbar nav a {
+        margin: 0.5rem;
+        font-size: 0.8rem;
+>>>>>>> 8a39080 (bloodDetect)
       }
       
       .hero-content h1 {
@@ -459,7 +734,11 @@
     <div class="hero-particles" id="particles-js"></div>
     <div class="hero-content">
       <h1>Meet Our Team</h1>
+<<<<<<< HEAD
       <p>The brilliant minds behind BloodDetect revolutionizing blood group detection through technology and innovation</p>
+=======
+      <p>The brilliant minds behind BloodDetect revolutionizing blood disorder detection through technology and innovation</p>
+>>>>>>> 8a39080 (bloodDetect)
     </div>
   </section>
 
@@ -586,6 +865,7 @@
     <div class="footer-content">
       <div class="footer-col">
         <h3>About BloodDetect</h3>
+<<<<<<< HEAD
         <p>BloodDetect is an innovative platform that uses AI to detect blood groups from fingerprints, revolutionizing
           emergency medicine and forensic science.</p>
       </div>
@@ -598,11 +878,28 @@
         <a href="/predictor">Predictor</a>
       </div>
 
+=======
+        <p>BloodDetect is an innovative platform that uses AI to detect and analyze blood disorders with high accuracy, making healthcare more accessible.</p>
+      </div>
+      
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <a href="/">Home</a>
+        <a href="/about">About Us</a>
+        <a href="/team">Our Team</a>
+        <a href="/predictor">Predictor Tool</a>
+      </div>
+      
+>>>>>>> 8a39080 (bloodDetect)
       <div class="footer-col">
         <h3>Contact Us</h3>
         <div class="contact-info">
           <i class="fas fa-map-marker-alt"></i>
+<<<<<<< HEAD
           <p>Vishwakarma Institute of Technology</p>
+=======
+          <p></p>
+>>>>>>> 8a39080 (bloodDetect)
         </div>
         <div class="contact-info">
           <i class="fas fa-phone"></i>
@@ -610,6 +907,7 @@
         </div>
         <div class="contact-info">
           <i class="fas fa-envelope"></i>
+<<<<<<< HEAD
           <p>vit.edu</p>
         </div>
       </div>
@@ -617,6 +915,15 @@
 
     <div class="copyright">
       <p>&copy; 2025 BloodDetect System</p>
+=======
+          <p>info@blooddetect.com</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      <p>&copy; 2025 BloodDetect System. All rights reserved.</p>
+>>>>>>> 8a39080 (bloodDetect)
     </div>
   </footer>
 
@@ -647,6 +954,10 @@
         teamSection.appendChild(particle);
       }
     }
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 8a39080 (bloodDetect)
     // Initialize particles.js for hero section
     document.addEventListener('DOMContentLoaded', function() {
       if (typeof particlesJS !== 'undefined') {
